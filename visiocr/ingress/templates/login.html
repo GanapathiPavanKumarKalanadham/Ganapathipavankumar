@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ingress</title>
+    <style>
+        /* Basic styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #E0F2F1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Container for waterfall layout */
+        .waterfall-container {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            max-width: 80vw;
+            justify-content: center;
+        }
+
+        /* Form box styling */
+        .form-box {
+            background: #ffffff;
+            padding: 20px;
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transform-origin: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            top: 0;
+        }
+
+        /* Tilt effect on click */
+        .form-box:active {
+            transform: rotate(-3deg) scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Waterfall staggered effect */
+        .form-box:nth-child(1) {
+            top: 0px;
+        }
+        .form-box:nth-child(2) {
+            top: 20px;
+        }
+        .form-box:nth-child(3) {
+            top: 40px;
+        }
+
+        /* Input and button styling */
+        .form-box input, .form-box button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .form-box button {
+            background-color: #00796B;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-box button:hover {
+            background-color: #004D40;
+        }
+
+        .message {
+            font-size: 0.9em;
+            color: #ff0000;
+            margin-top: 5px;
+        }
+
+        /* Heading styling */
+        .form-box h2 {
+            font-size: 1.2em;
+            color: #004D40;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Login</h2>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
+</body>
+</html>

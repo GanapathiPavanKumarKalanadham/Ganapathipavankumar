@@ -1,0 +1,51 @@
+/* Change background color */
+body {
+    background-color: #2c3e50; /* Dark blue background */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Customize the login form container */
+.login {
+    background-color: #1abc9c; /* Teal background for form container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Customize the heading */
+.login h1 {
+    color: #ecf0f1; /* Light text for better contrast */
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+/* Customize labels and inputs */
+.form-row label {
+    color: #ecf0f1; /* Light text color for labels */
+    font-weight: bold;
+}
+
+.form-row input {
+    background-color: #34495e; /* Darker background for inputs */
+    color: #ecf0f1;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Customize login button */
+.submit-row input {
+    background-color: #e74c3c; /* Red background for button */
+    color: #ecf0f1;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-row input:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}

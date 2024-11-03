@@ -1,0 +1,192 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingress</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <style>
+        /* Full-page layout and styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #E0F7FA, #80DEEA);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #004D40;
+        }
+
+        /* Top menu styling */
+        .top-menu {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            font-size: 1em;
+        }
+
+        .top-menu a {
+            color: #00796B;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .top-menu a:hover {
+            background-color: #004D40;
+            color: white;
+        }
+
+        /* Welcome section styling */
+        .welcome-section {
+            text-align: center;
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #00695C;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Attractive form box */
+        .form-box {
+            background-color: #FFFFFF;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .form-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Form elements styling */
+        .form-box input[type="file"] {
+            margin-top: 15px;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: 2px dashed #B2DFDB;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-box input[type="file"]:hover {
+            border-color: #00796B;
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #00796B;
+            color: #FFFFFF;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .form-box button:hover {
+            background-color: #004D40;
+        }
+
+        /* Footer styling */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #004D40;
+        }
+
+        .footer a {
+            color: #00796B;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        /* Loading spinner styling */
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e0f2f1;
+            border-top: 3px solid #00796B;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin: 10px auto;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Menu -->
+    <div class="top-menu">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        Welcome to Ingress OCR Processing
+    </div>
+
+    <!-- Form Box -->
+    <div class="form-box">
+        <p>Upload your document to extract text using our OCR service.</p>
+        <form action="{% url 'process_ocr' %}" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            {% csrf_token %}
+            <input type="file" name="document" accept=".jpg,.jpeg,.png,.pdf" required>
+            <div class="spinner" id="spinner"></div>
+            <button type="submit" id="submit-button">Process OCR</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2024 Ingress. All rights reserved.<br>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </div>
+
+    <script>
+        // Show loading spinner and disable button when submitting
+        function showLoading() {
+            const button = document.getElementById('submit-button');
+            const spinner = document.getElementById('spinner');
+            button.textContent = 'Processing...';
+            button.disabled = true;
+            spinner.style.display = 'inline-block';
+        }
+    </script>
+
+</body>
+</html>

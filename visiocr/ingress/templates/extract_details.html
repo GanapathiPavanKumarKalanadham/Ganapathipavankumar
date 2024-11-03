@@ -1,0 +1,19 @@
+<!-- extracted_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extracted Details</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Link to your CSS file if needed -->
+</head>
+<body>
+    <h1>Extracted Details</h1>
+    <ul>
+        <li><strong>Name:</strong> {{ name }}</li>
+        <li><strong>Father's Name:</strong> {{ father_name }}</li>
+        <li><strong>Date of Birth:</strong> {{ dob }}</li>
+    </ul>
+    <a href="{% url 'upload_image' %}">Upload another image</a>  <!-- Link back to the upload form -->
+</body>
+</html>
